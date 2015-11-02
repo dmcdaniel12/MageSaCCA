@@ -1,5 +1,5 @@
 # MageSaCCA
-Magento Sales and Clearance Category Automation Kit
+**MageSaCCA** means Magento Sales and Clearance Category Automation
 
 This program is used to automatically update your Sales and Clearance categories automatically. This can be used in two different ways currently, with a third on the way. 
 
@@ -18,7 +18,12 @@ Right now we only have support for MySQL insertion and Rapidflow download CSV fi
 then have it export to CSV file for Rapidflow insertion. We are working on an API version so that this will still use the API to change categories in 
 the future. 
 
+## Future TODO
 
+* Add in API handling of updated categories for smaller projects or people who are uncomfortable editing MySQL with a script directly. 
+* Automatically run index once completed
+* Better support for sites w/ unique category configurations
+* Allow people to set their own clearance amount in the config section
 
 ## Contributing
 
