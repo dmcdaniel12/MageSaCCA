@@ -20,10 +20,12 @@ the future.
 
 ## Future TODO
 
-* Add in API handling of updated categories for smaller projects or people who are uncomfortable editing MySQL with a script directly. 
+Note: These are in no particular order. As I get them completed, I will strike them off the list. 
+
 * Automatically run index once completed
 * Better support for sites w/ unique category configurations
 * Allow people to set their own clearance amount in the config section
+* Add in API handling of updated categories for smaller projects or people who are uncomfortable editing MySQL with a script directly. 
 
 ## Contributing
 

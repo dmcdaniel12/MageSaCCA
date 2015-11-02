@@ -76,8 +76,8 @@ class Mysql extends Functionality{
         $this->getConn()->close();
     }
     
-    public function selectClearanceQuery(){
-        return $this->selectQuery("SELECT * FROM catalog_product_flat_1 WHERE special_price < (price * .5)");
+    public function selectClearanceQuery($clearanceAmount){
+        return $this->selectQuery("SELECT * FROM catalog_product_flat_1 WHERE special_price < (price * $clearanceAmount)");
     }
     
     public function selectSalesQuery(){
