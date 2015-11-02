@@ -1,8 +1,6 @@
 <?php
 
 /**
- * TODO: Add in Column Headers
- * TODO: Add in column header setters/getters
  * TODO: Export to CSV File
  * TODO: Add in Global Variable DS (Directory_Structure)
  * TODO: Add in Variable for file location instead of hard coded
@@ -10,9 +8,9 @@
  * TODO: Add in CSV Library to remove code from the RapidFlow Library code section
  */
 /**
- * @category Rods
- * @package Rods_Sale
- * @author Derek McDaniel derek@rods.com
+ * @category MageSaCCA
+ * @package MageSaCCA_Sale
+ * @author Derek McDaniel dmcdaniel12@gmail.com
  * @license http://opensource.org/licenses/GPL-2.0 GPL-2.0 Public License
  */
 include_once 'Functionality.php';

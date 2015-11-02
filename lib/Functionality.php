@@ -1,19 +1,9 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of Functionality
- *
- * @author dmcdaniel
- */
-
-/**
- * This abstract class will setup the default functionality needed for Magento/MySQL/Rapidflow
+ * @category MageSaCCA
+ * @package MageSaCCA_Sale
+ * @author Derek McDaniel dmcdaniel12@gmail.com
+ * @license http://opensource.org/licenses/GPL-2.0 GPL-2.0 Public License
  */
 
 abstract class Functionality {

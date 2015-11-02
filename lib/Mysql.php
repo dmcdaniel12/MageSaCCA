@@ -1,8 +1,8 @@
 <?php
 /**
- * @category Rods
- * @package Rods_Sale
- * @author Derek McDaniel derek@rods.com
+ * @category MageSaCCA
+ * @package MageSaCCA_Sale
+ * @author Derek McDaniel dmcdaniel12@gmail.com
  * @license http://opensource.org/licenses/GPL-2.0 GPL-2.0 Public License
  */
 

@@ -1,16 +1,14 @@
 <?php
-
 /**
- * @category Rods
- * @package Rods_Sale
- * @author Derek McDaniel derek@rods.com
+ * @category MageSaCCA
+ * @package MageSaCCA_Sale
+ * @author Derek McDaniel dmcdaniel12@gmail.com
  * @license http://opensource.org/licenses/GPL-2.0 GPL-2.0 Public License
  */
 include_once 'Functionality.php';
 
 class Magento extends Functionality {
 
-    // TODO add in code to automatically clear the categories first
     public function clearCategory($type, $config) {
         $categories = $config->getSaleCats();
         foreach ($categories as $cat) {
@@ -19,7 +17,6 @@ class Magento extends Functionality {
     }
 
     //@TODO add in reindex method here - Needs to have API code in order to work properly
-    // or possible location of shell script
     public function reindex() {
         
     }
@@ -38,7 +35,6 @@ class Magento extends Functionality {
         $saleProducts = $mysql->selectSalesQuery("SELECT * FROM catalog_product_flat_1 WHERE special_price < price");
         foreach ($saleProducts as $sp) {
             if (isset($sp)) {
-                // change this to config instead of config->
                 $this->setSaleCat($type, $sp, $config);
             }
         }
@@ -46,7 +42,7 @@ class Magento extends Functionality {
 
     public function setClearanceCat($type, $cp) {
         $position = 1;
-        $category_id = 498;
+        $category_id = $config->getClearanceBaseCat();
         $product_id = $cp['entity_id'];
         $sku = $cp['sku'];
 
@@ -55,7 +51,7 @@ class Magento extends Functionality {
 
     public function setSaleCat($type, $sp, $config) {
         // TODO: This needs to be done via configuration setting
-        $categoryId = 215;
+        $categoryId = $config->getSaleBaseCat();
         $position = 1;
         $product = $sp['entity_id'];
         $sku = $sp['sku'];
