@@ -14,7 +14,11 @@ where the Special Price is 50% of the regular price. You can change this in the 
 To use, fill out the lib/Mysql.php file with all of your database credentials. You will also need to fill out the lib/Config.php file with your Sale Category id's, your baseCategoryIds
 and your saleCatIds a second time. 
 
-Right now we only have support for MySQL insertion and Rapidflow download CSV file. 
+Right now we only have support for MySQL insertion and Rapidflow download CSV file. If you do not feel comfortable having this touch the DB directly, 
+then have it export to CSV file for Rapidflow insertion. We are working on an API version so that this will still use the API to change categories in 
+the future. 
+
+
 
 ## Contributing
 
@@ -33,3 +37,11 @@ daily and updating products daily with our ERP system.
 ## License
 
 TODO: Write License information
+
+## Contact
+
+#### Developer/Company
+
+* e-mail: dmcdaniel12@gmail.com
+* Twitter: [@twitterhandle](https://twitter.com/dmcdaniel12 "dmcdaniel12 on twitter")
+
