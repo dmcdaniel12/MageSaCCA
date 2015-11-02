@@ -45,7 +45,7 @@ class Config {
     function getInsertType($area) {
         return $this->insertType[$area];
     }
-    // Default is 1 = SQL, 2 = Export to CSV for rapidflow, 3 = Magento API
+    // Default is 0 = SQL, 1 = Export to CSV for rapidflow, 2 = Magento API
     function setInsertType($insertType) {
         $this->insertType = $insertType;
     }
