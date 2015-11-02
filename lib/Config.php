@@ -20,11 +20,11 @@ class Config {
     // 0 is array, 1 is csv
     private $parseType = 0;
     
-    function getBaseCatToSalesCat() {
+    public function getBaseCatToSalesCat() {
         return $this->baseCatToSalesCat;
     }
 
-    function setBaseCatToSalesCat($baseCatToSalesCat) {
+    public function setBaseCatToSalesCat($baseCatToSalesCat) {
         $this->baseCatToSalesCat = $baseCatToSalesCat;
     }   
     
@@ -84,19 +84,19 @@ class Config {
         $this->insertType = $insertType;
     }
     
-    function getSaleBaseCat() {
+    public function getSaleBaseCat() {
         return $this->saleBaseCat;
     }
 
-    function getClearanceBaseCat() {
+    public function getClearanceBaseCat() {
         return $this->clearanceBaseCat;
     }
 
-    function setSaleBaseCat($saleBaseCat) {
+    public function setSaleBaseCat($saleBaseCat) {
         $this->saleBaseCat = $saleBaseCat;
     }
 
-    function setClearanceBaseCat($clearanceBaseCat) {
+    public function setClearanceBaseCat($clearanceBaseCat) {
         $this->clearanceBaseCat = $clearanceBaseCat;
     }
     

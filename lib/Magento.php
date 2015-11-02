@@ -40,7 +40,7 @@ class Magento extends Functionality {
         }
     }
 
-    public function setClearanceCat($type, $cp) {
+    public function setClearanceCat($type, $cp, $config) {
         $position = 1;
         $category_id = $config->getClearanceBaseCat();
         $product_id = $cp['entity_id'];
