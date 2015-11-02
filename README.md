@@ -43,5 +43,5 @@ TODO: Write License information
 #### Developer/Company
 
 * e-mail: dmcdaniel12@gmail.com
-* Twitter: [@twitterhandle](https://twitter.com/dmcdaniel12 "dmcdaniel12 on twitter")
+* Twitter: [@dmcdaniel12](https://twitter.com/dmcdaniel12 "dmcdaniel12 on twitter")
 
