@@ -19,6 +19,8 @@ class Config {
     private $insertType = array("Mysql", "Rapidflow","Api"); 
     // 0 is array, 1 is csv
     private $parseType = 0;
+    // This is for our stuff only
+    private $excludeSaleOfDayItems;
     
     public function getBaseCatToSalesCat() {
         return $this->baseCatToSalesCat;
@@ -100,4 +102,13 @@ class Config {
         $this->clearanceBaseCat = $clearanceBaseCat;
     }
     
+    public function getExcludeSaleOfDayItems() {
+        return $this->excludeSaleOfDayItems;
+    }
+
+    public function setExcludeSaleOfDayItems($excludeSaleOfDayItems) {
+        $this->excludeSaleOfDayItems = $excludeSaleOfDayItems;
+    }
+
+
 }

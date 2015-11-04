@@ -61,7 +61,6 @@ class Mysql extends Functionality{
         $this->connect();
     }
     
-
     public function connect() {
         $conn = new mysqli($this->getServer(), $this->getUsername(), $this->getPassword(), $this->getDatabase());
 
@@ -82,6 +81,10 @@ class Mysql extends Functionality{
     
     public function selectSalesQuery(){
         return $this->selectQuery("SELECT * FROM catalog_product_flat_1 WHERE special_price < price");
+    }
+    
+    public function selectDailyDeal($startDate, $endDate){
+        return $this->selectQuery("SELECT sku FROM rods_dailydeal WHERE startDate = '$startDate' AND endDate = '$endDate'");
     }
 
     public function selectQuery($query) {
@@ -114,7 +117,7 @@ class Mysql extends Functionality{
     public function deleteQuery($whereData) {
         $this->getConn()->query("DELETE FROM catalog_category_product WHERE category_id = $whereData");
     }
-    
+        
     public function complete(){
         $this->getConn()->close();
     }

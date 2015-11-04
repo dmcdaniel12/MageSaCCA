@@ -22,6 +22,7 @@ set_time_limit(0);
 $config = new Config();
 // This sets the parse type to CSV instead of from a category config section
 $config->setParseType(1);
+$config->setExcludeSaleOfDayItems(true);
 
 if($config->getParseType() == 1){
     $csv = new Csv();
