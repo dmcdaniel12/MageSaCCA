@@ -44,7 +44,7 @@ class Magento extends Functionality {
 
     public function runSaleProductUpdates($type, $config) {
         $mysql = new Mysql();
-        $saleProducts = $mysql->selectSalesQuery("SELECT * FROM catalog_product_flat_1 WHERE special_price < price");
+        $saleProducts = $mysql->selectSalesQuery();
 
         if ($config->getExcludeSaleOfDayItems()) {
             $startDate = date('Y-m-d') . " 00:00:00";
@@ -58,6 +58,15 @@ class Magento extends Functionality {
                 $this->setSaleCat($type, $sp, $config);
             }
         }
+    }
+
+    public function runNewArrivals($type, $config) {
+        // code to get all new arrival items from last 30 days for 60 total days
+        $startDate = date('Y-m-d', strtotime('-59 Days'));        
+        $mysql = new Mysql();
+        $newArrivalProducts = $mysql->selectNewArrivalProducts($startDate);
+        var_dump($newArrivalProducts);
+        //$this->setNewArrivalCat($type, $nap, $config);
     }
 
     public function setClearanceCat($type, $cp, $config) {
@@ -99,7 +108,12 @@ class Magento extends Functionality {
             }
         }
 
+        // inserts it into base category 215
         $type->insertCat($categoryId, $product, $position, $sku);
+    }
+    
+    public function setNewArrivalCat($type, $product, $config){
+        // code here to insert it in
     }
 
     public function removeDailyDealItems($products, $dailyDealItems) {

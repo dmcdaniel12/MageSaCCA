@@ -40,8 +40,10 @@ $newType = new $type();
 
 // TODO - Add in Magento code to do this via the API in small batch increments
 $magento = new Magento();
-$magento->clearCategory($newType, $config);
-$magento->runClearanceProductUpdates($newType, $config);
-$magento->runSaleProductUpdates($newType, $config);
+// Need to make clearCategory also clear out New Arrivals
+//$magento->clearCategory($newType, $config);
+//$magento->runClearanceProductUpdates($newType, $config);
+//$magento->runSaleProductUpdates($newType, $config);
+$magento->runNewArrivals($newType, $config);
 $magento->complete($newType);
-$magento->reindex($config);
+//$magento->reindex($config);

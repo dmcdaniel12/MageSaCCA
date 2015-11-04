@@ -44,6 +44,7 @@ Note: These are in no particular order. As I get them completed, I will strike t
 * Add in API handling of updated categories for smaller projects or people who are uncomfortable editing MySQL with a script directly. 
 * ~~Add in Daily Deal code for our own personal usage. We will be releasing this module to public soon.~~
 * ~~Config to turn off above bullet point~~
+* Complete New Arrivals piece
 
 ## Contributing
 

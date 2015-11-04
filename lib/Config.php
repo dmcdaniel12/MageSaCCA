@@ -6,10 +6,10 @@
  * @license http://opensource.org/licenses/GPL-2.0 GPL-2.0 Public License
  */
 class Config {
-    
-    // TODO Add in cleareance/sale cateogry variables
+
     private $saleBaseCat = 215;
     private $clearanceBaseCat = 498;
+    private $newArrivalsCat = 500;
     private $csvFileConversion = "csv/category.csv";
     private $clearanceAmount = .5;
     private $saleCats = array();
@@ -118,5 +118,13 @@ class Config {
 
     public function setMagentoAppLocation($magentoAppLocation) {
         $this->magentoAppLocation = $magentoAppLocation;
+    }
+    
+    public function getNewArrivalsCat() {
+        return $this->newArrivalsCat;
+    }
+
+    public function setNewArrivalsCat($newArrivalsCat) {
+        $this->newArrivalsCat = $newArrivalsCat;
     }
 }
