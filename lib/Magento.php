@@ -22,10 +22,8 @@ class Magento extends Functionality {
         require_once $config->getMagentoAppLocation();
         umask(0);
         Mage::app();
-        for ($i = 1; $i <= 9; $i++) {
-            $process = Mage::getModel('index/process')->load($i);
-            $process->reindexAll();
-        }
+        $process = Mage::getModel('index/indexer')->getProcessByCode('catalog_category_product');
+        $process->reindexAll();
     }
 
     public function runClearanceProductUpdates($type, $config) {
