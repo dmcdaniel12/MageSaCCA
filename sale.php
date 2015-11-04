@@ -17,7 +17,7 @@ include_once 'lib/Rapidflow.php';
 include_once 'lib/Csv.php';
 
 // TODO move this to config
-//error_reporting(0);
+error_reporting(0);
 set_time_limit(0);
 
 // TODO: setup csv file that it uses to go to 1 to 1 with

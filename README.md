@@ -22,14 +22,16 @@ the future.
 
 Note: These are in no particular order. As I get them completed, I will strike them off the list. 
 
-* Automatically run index once completed
+~~* Automatically run index once completed~~
 * Better support for sites w/ unique category configurations
-* Allow people to set their own clearance amount in the config section
+~~* Allow people to set their own clearance amount in the config section~~
 * Add in API handling of updated categories for smaller projects or people who are uncomfortable editing MySQL with a script directly. 
+~~* Add in Daily Deal code for our own personal usage. We will be releasing this module to public soon. ~~
+~~* Config to turn off above bullet point~~
 
 ## Contributing
 
-1. For it!
+1. Fork it!
 2. Create your feature branch: `git checkout -b my-new-feature`
 3. Commit your changes: `git commit -am 'Add Some Feature Comment'`
 4. Push to the branch `git push origin -my-new-feature`
