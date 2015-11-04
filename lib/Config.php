@@ -20,7 +20,7 @@ class Config {
     // 0 is array, 1 is csv
     private $parseType = 0;
     // This is for our stuff only
-    private $excludeSaleOfDayItems;
+    private $excludeSaleOfDayItems = false;
     // This needs to be the full path
     private $magentoAppLocation;
     

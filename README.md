@@ -9,6 +9,22 @@ Very simple installation instructions. Download the code and edit the lib/Mysql.
 from the database to create the items that will go into the sale tab. We put anything into the Sale tab that has a lower Special Price than the actual price. We put everything into clearance
 where the Special Price is 50% of the regular price. You can change this in the selectClearanceQuery() section of the code. 
 
+## Configuration
+
+Configuration of any system can be complex, but I have tried to make it as easy and simple as possible. Here I will list all of the things you can configure within the configuration
+section of the sale.php file using lib/Config. use $config->setNameOfConfiguration() to adjust the default values to your needs. 
+
+* saleBaseCat - Default Sales Category in your admin panel
+* cleareanceBaseCat - Default Clearance Category in your admin panel
+* csvFileConversion - Default csv file used for conversion for sub categories in saleBaseCat section. 
+* clearanceAmount - Set the default percent needed to qualify as a clearance product
+* saleCats - If not using the csvFileConversion, you can create an array of saleCats to use for conversion here
+* baseCategoryIds - These are your top level baseCategoryIds. Used with saleCats to help w/ conversion
+* insertType - default array of mysql, rapidflow and API. DO NOT CHANGE if you want things to stay default. You will use $type = $config->getInsertType(#) to determine what type of insertType the system will use. Default is 0 (SQL). 1 is RapidFlow - will export to CSV file, 2 is API (Not completed yet so wont work). 
+* parseType - This will determine whether or not you use csvFileConversion or the saleCats/baseCategoryIds. 0 for array, 1 for CSV. array is default
+* excludeSaleOfDayItems - Will determine if you are using our module when it is released. Default is false. 
+* magentoAppLocation - Maybe the most important of all. As things progress and switch, you will be required to set this. I have it set to the default currently, which shouldn't need to be changed. It will automatically adjust for Linux/Windows when needed using ROOT Location and Directory_structure. 
+
 ## Usage
 
 To use, fill out the lib/Mysql.php file with all of your database credentials. You will also need to fill out the lib/Config.php file with your Sale Category id's, your baseCategoryIds
