@@ -5,6 +5,8 @@
  * @author Derek McDaniel dmcdaniel12@gmail.com
  * @license http://opensource.org/licenses/GPL-2.0 GPL-2.0 Public License
  */
+
+// This class will become quite large, may look into splitting it into multiple classes for configuration
 class Config {
     
     // TODO Add in cleareance/sale cateogry variables
