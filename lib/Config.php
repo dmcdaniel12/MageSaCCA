@@ -21,6 +21,8 @@ class Config {
     private $parseType = 0;
     // This is for our stuff only
     private $excludeSaleOfDayItems;
+    // This needs to be the full path
+    private $magentoAppLocation;
     
     public function getBaseCatToSalesCat() {
         return $this->baseCatToSalesCat;
@@ -110,5 +112,11 @@ class Config {
         $this->excludeSaleOfDayItems = $excludeSaleOfDayItems;
     }
 
+    public function getMagentoAppLocation() {
+        return $this->magentoAppLocation;
+    }
 
+    public function setMagentoAppLocation($magentoAppLocation) {
+        $this->magentoAppLocation = $magentoAppLocation;
+    }
 }

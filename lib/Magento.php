@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @category MageSaCCA
  * @package MageSaCCA_Sale
@@ -17,21 +18,27 @@ class Magento extends Functionality {
     }
 
     //@TODO add in reindex method here - Needs to have API code in order to work properly
-    public function reindex() {
-        
+    public function reindex($config) {
+        require_once $config->getMagentoAppLocation();
+        umask(0);
+        Mage::app();
+        for ($i = 1; $i <= 9; $i++) {
+            $process = Mage::getModel('index/process')->load($i);
+            $process->reindexAll();
+        }
     }
 
     public function runClearanceProductUpdates($type, $config) {
         $mysql = new Mysql();
         $clearanceProducts = $mysql->selectClearanceQuery($config->getClearanceAmount());
 
-        if($config->getExcludeSaleOfDayItems()){
+        if ($config->getExcludeSaleOfDayItems()) {
             $startDate = date('Y-m-d') . " 00:00:00";
             $endDate = date('Y-m-d', strtotime(' +1 day')) . " 00:00:00";
             $dailyDealItems = $mysql->selectDailyDeal($startDate, $endDate);
             $clearanceProducts = $this->removeDailyDealItems($clearanceProducts, $dailyDealItems);
         }
-        
+
         foreach ($clearanceProducts as $cp) {
             $this->setClearanceCat($type, $cp, $config);
         }
@@ -40,14 +47,14 @@ class Magento extends Functionality {
     public function runSaleProductUpdates($type, $config) {
         $mysql = new Mysql();
         $saleProducts = $mysql->selectSalesQuery("SELECT * FROM catalog_product_flat_1 WHERE special_price < price");
-        
-        if($config->getExcludeSaleOfDayItems()){
+
+        if ($config->getExcludeSaleOfDayItems()) {
             $startDate = date('Y-m-d') . " 00:00:00";
             $endDate = date('Y-m-d', strtotime(' +1 day')) . " 00:00:00";
             $dailyDealItems = $mysql->selectDailyDeal($startDate, $endDate);
             $saleProducts = $this->removeDailyDealItems($saleProducts, $dailyDealItems);
         }
-        
+
         foreach ($saleProducts as $sp) {
             if (isset($sp)) {
                 $this->setSaleCat($type, $sp, $config);
@@ -70,7 +77,7 @@ class Magento extends Functionality {
         $position = 1;
         $product = $sp['entity_id'];
         $sku = $sp['sku'];
-  
+
         $categories = $type->selectQuery("SELECT category_id FROM catalog_category_product WHERE product_id = " . $product);
         if ($config->getBaseCatToSalesCat()) {
             foreach ($categories as $cat) {
@@ -93,14 +100,14 @@ class Magento extends Functionality {
                 }
             }
         }
-        
+
         $type->insertCat($categoryId, $product, $position, $sku);
     }
-    
-    public function removeDailyDealItems($products, $dailyDealItems){
-        foreach($products as $key=>$value){
-            foreach($dailyDealItems as $ddItem){
-                if($ddItem['sku'] == $value['sku']){
+
+    public function removeDailyDealItems($products, $dailyDealItems) {
+        foreach ($products as $key => $value) {
+            foreach ($dailyDealItems as $ddItem) {
+                if ($ddItem['sku'] == $value['sku']) {
                     unset($products[$key]);
                 }
             }
