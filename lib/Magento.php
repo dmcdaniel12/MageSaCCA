@@ -89,6 +89,7 @@ class Magento extends Functionality {
         $sku = $sp['sku'];
 
         $categories = $type->selectQuery("SELECT category_id FROM catalog_category_product WHERE product_id = " . $product);
+
         if ($config->getBaseCatToSalesCat()) {
             foreach ($categories as $cat) {
                 foreach ($config->getBaseCatToSalesCat() as $salesCat) {
@@ -115,13 +116,22 @@ class Magento extends Functionality {
         $type->insertCat($categoryId, $product, $position, $sku);
     }
 
-    public function setNewArrivalCat($type, $product, $config) {
+    public function setNewArrivalCat($type, $prod, $config) {
         $categoryId = $config->getNewArrivalsCat();
         $position = 1;
-        $entityId = $product['entity_id'];
-        $sku = $product['sku'];
+        $product = $prod['entity_id'];
+        $sku = $prod['sku'];
         
-        $type->insertCat($categoryId, $product, $position, $sku);
+        $categories = $type->selectQuery("SELECT category_id FROM catalog_category_product WHERE product_id = " . $product);
+        if ($config->getBaseCatToNewArrivalsCat()) {
+            foreach ($categories as $cat) {
+                foreach ($config->getBaseCatToNewArrivalsCat() as $newArrivalsCat) {
+                    if (in_array($cat['category_id'], $newArrivalsCat)) {
+                        $type->insertCat($newArrivalsCat[1], $product, $position, $sku);
+                    }
+                }
+            }
+        }
         
     }
 

@@ -7,6 +7,9 @@
  * @license http://opensource.org/licenses/GPL-2.0 GPL-2.0 Public License
  */
 
+// simple script to monitor time script takes
+$start = microtime(TRUE); 
+
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(dirname(__FILE__)));
 
@@ -17,7 +20,7 @@ include_once 'lib/Rapidflow.php';
 include_once 'lib/Csv.php';
 
 // TODO move this to config
-//error_reporting(0);
+error_reporting(0);
 set_time_limit(0);
 
 // TODO: setup csv file that it uses to go to 1 to 1 with
@@ -48,3 +51,9 @@ $magento->runSaleProductUpdates($newType, $config);
 $magento->runNewArrivals($newType, $config);
 $magento->complete($newType);
 //$magento->reindex($config);
+
+$finish = microtime(TRUE);
+
+$totaltime = $finish - $start;  
+  
+echo "This script took ".$totaltime." seconds to run";  
