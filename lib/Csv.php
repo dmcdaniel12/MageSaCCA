@@ -43,16 +43,15 @@ class Csv {
         return $saleIds;
     }
 
-    public function getNewArrivalCategoriesFromCsv($file) {
+    public function getNewArrivalCategoriesFromCsv($file, $config) {
         $conversions = $this->parseCsv($file);
-        $newArrivalIds = array();
+        $newArrivalIds = array($config->getNewArrivalsCat());
 
         foreach ($conversions as $con) {
-            if (!in_array($con[1], $newArrivalIds)) {
+            if (!in_array($con[2], $newArrivalIds)) {
                 $newArrivalIds[] = (int) $con[2];
             }
         }
-
         return $newArrivalIds;
     }
 

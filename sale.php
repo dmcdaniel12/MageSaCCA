@@ -36,7 +36,7 @@ if ($config->getParseType() == 1) {
     $config->setBaseCatToSalesCat($csv->parseSalesCatConvCsv($config->getCsvFileConversion()));
     $config->setBaseCatToNewArrivalsCat($csv->parseNewArrivalsCatConvCsv($config->getCsvFileConversion()));
     $config->setSaleCats($csv->getSaleCategoriesFromCsv($config->getCsvFileConversion(), $config));
-    $config->setNewArrivalCats($csv->getNewArrivalCategoriesFromCsv($config->getCsvFileConversion()));    
+    $config->setNewArrivalCats($csv->getNewArrivalCategoriesFromCsv($config->getCsvFileConversion(), $config));    
 }
 
 // InsertType 0 = SQL, 1 = CSV Export, 2 = Magento API
@@ -47,10 +47,10 @@ $newType = new $type();
 $magento = new Magento();
 //// Need to make clearCategory also clear out New Arrivals
 $magento->clearCategory($newType, $config);
-$magento->runClearanceProductUpdates($newType, $config);
-$magento->runSaleProductUpdates($newType, $config);
-$magento->runNewArrivals($newType, $config);
-$magento->complete($newType);
+//$magento->runClearanceProductUpdates($newType, $config);
+//$magento->runSaleProductUpdates($newType, $config);
+//$magento->runNewArrivals($newType, $config);
+//$magento->complete($newType);
 //$magento->reindex($config);
 
 $finish = microtime(TRUE);
