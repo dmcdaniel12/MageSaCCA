@@ -13,6 +13,7 @@ class Config {
     private $csvFileConversion = "csv/category.csv";
     private $clearanceAmount = .5;
     private $saleCats = array();
+    private $newArrivalCats = array();
     private $baseCategoryIds = array();
     private $saleCatId = array();
     private $baseCatToSalesCat;
@@ -135,5 +136,13 @@ class Config {
 
     public function setBaseCatToNewArrivalsCat($baseCatToNewArrivalsCat) {
         $this->baseCatToNewArrivalsCat = $baseCatToNewArrivalsCat;
+    }
+    
+    public function getNewArrivalCats() {
+        return $this->newArrivalCats;
+    }
+
+    public function setNewArrivalCats($newArrivalCats) {
+        $this->newArrivalCats = $newArrivalCats;
     }
 }

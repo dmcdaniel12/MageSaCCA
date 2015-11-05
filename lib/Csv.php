@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @category MageSaCCA
  * @package MageSaCCA_Sale
@@ -6,40 +7,53 @@
  * @license http://opensource.org/licenses/GPL-2.0 GPL-2.0 Public License
  */
 class Csv {
-    
-    public function parseCsv($file){
+
+    public function parseCsv($file) {
         return array_map('str_getcsv', file($file));
     }
-    
-    public function parseSalesCatConvCsv($file){
+
+    public function parseSalesCatConvCsv($file) {
         $conversions = $this->parseCsv($file);
         $baseCatConv = array();
-        foreach($conversions as $conv){
+        foreach ($conversions as $conv) {
             $baseCatConv[] = array($conv[0], $conv[1]);
         }
         return $baseCatConv;
     }
-    
-    public function parseNewArrivalsCatConvCsv($file){
+
+    public function parseNewArrivalsCatConvCsv($file) {
         $conversions = $this->parseCsv($file);
         $baseCatConv = array();
-        foreach($conversions as $conv){
-            $baseCatConv[] = array($conv[0] , $conv[2]);
+        foreach ($conversions as $conv) {
+            $baseCatConv[] = array($conv[0], $conv[2]);
         }
         return $baseCatConv;
     }
-    
-    public function getSaleCategoriesFromCsv($file, $config){
+
+    public function getSaleCategoriesFromCsv($file, $config) {
         $conversions = $this->parseCsv($file);
         $saleIds = array($config->getSaleBaseCat(), $config->getClearanceBaseCat());
-        
-        foreach($conversions as $con){
-            if(!in_array($con[1], $saleIds)){
+
+        foreach ($conversions as $con) {
+            if (!in_array($con[1], $saleIds)) {
                 $saleIds[] = (int) $con[1];
             }
         }
 
         return $saleIds;
     }
-    
+
+    public function getNewArrivalCategoriesFromCsv($file) {
+        $conversions = $this->parseCsv($file);
+        $newArrivalIds = array();
+
+        foreach ($conversions as $con) {
+            if (!in_array($con[1], $newArrivalIds)) {
+                $newArrivalIds[] = (int) $con[2];
+            }
+        }
+
+        return $newArrivalIds;
+    }
+
 }

@@ -11,10 +11,12 @@ include_once 'Functionality.php';
 class Magento extends Functionality {
 
     public function clearCategory($type, $config) {
-        $categories = $config->getSaleCats();
         // This will get the New Arrivals Category and delete it
-        $type->deleteQuery($config->getNewArrivalsCat());
-        foreach ($categories as $cat) {
+        foreach($config->getNewArrivalCats() as $cat){
+            $type->deleteQuery($cat);
+        }
+
+        foreach ($config->getSaleCats() as $cat) {
             $type->deleteQuery($cat);
         }
     }
@@ -123,6 +125,7 @@ class Magento extends Functionality {
         $sku = $prod['sku'];
         
         $categories = $type->selectQuery("SELECT category_id FROM catalog_category_product WHERE product_id = " . $product);
+        var_dump($categories);
         if ($config->getBaseCatToNewArrivalsCat()) {
             foreach ($categories as $cat) {
                 foreach ($config->getBaseCatToNewArrivalsCat() as $newArrivalsCat) {
@@ -132,6 +135,8 @@ class Magento extends Functionality {
                 }
             }
         }
+        
+        $type->insertCat($categoryId, $product, $position, $sku);
         
     }
 
