@@ -33,7 +33,7 @@ if ($config->getParseType() == 1) {
     $parser = $csv->parseCsv($config->getCsvFileConversion());
     $config->setBaseCatToSalesCat($parser);
     
-    $config->setSaleCats($csv->getSaleCategoriesFromCsv($config->getCsvFileConversion()));
+    $config->setSaleCats($csv->getSaleCategoriesFromCsv($config->getCsvFileConversion(), $config));
 }
 
 // InsertType 0 = SQL, 1 = CSV Export, 2 = Magento API
