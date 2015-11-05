@@ -13,11 +13,15 @@ $start = microtime(TRUE);
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(dirname(__FILE__)));
 
-include_once 'lib/Mysql.php';
-include_once 'lib/Config.php';
-include_once 'lib/Magento.php';
-include_once 'lib/Rapidflow.php';
-include_once 'lib/Csv.php';
+spl_autoload_register(function ($class) {
+    include 'lib' . DS . $class . '.php';
+});
+
+//include_once 'lib/Mysql.php';
+//include_once 'lib/Config.php';
+//include_once 'lib/Magento.php';
+//include_once 'lib/Rapidflow.php';
+//include_once 'lib/Csv.php';
 
 // TODO move this to config
 error_reporting(0);
@@ -47,10 +51,10 @@ $newType = new $type();
 $magento = new Magento();
 //// Need to make clearCategory also clear out New Arrivals
 $magento->clearCategory($newType, $config);
-//$magento->runClearanceProductUpdates($newType, $config);
-//$magento->runSaleProductUpdates($newType, $config);
-//$magento->runNewArrivals($newType, $config);
-//$magento->complete($newType);
+$magento->runClearanceProductUpdates($newType, $config);
+$magento->runSaleProductUpdates($newType, $config);
+$magento->runNewArrivals($newType, $config);
+$magento->complete($newType);
 //$magento->reindex($config);
 
 $finish = microtime(TRUE);
