@@ -11,4 +11,16 @@ class Csv {
         return array_map('str_getcsv', file($file));
     }
     
+    public function getSaleCategoriesFromCsv($file){
+        $conversions = $this->parseCsv($file);
+        $saleIds = array(215, 498);
+        
+        foreach($conversions as $con){
+            if(!in_array($con[1], $saleIds)){
+                $saleIds[] = (int) $con[1];
+            }
+        }
+        return $saleIds;
+    }
+    
 }
