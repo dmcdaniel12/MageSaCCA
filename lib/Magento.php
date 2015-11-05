@@ -12,6 +12,8 @@ class Magento extends Functionality {
 
     public function clearCategory($type, $config) {
         $categories = $config->getSaleCats();
+        // This will get the New Arrivals Category and delete it
+        $type->deleteQuery($config->getNewArrivalsCat());
         foreach ($categories as $cat) {
             $type->deleteQuery($cat);
         }
@@ -62,11 +64,13 @@ class Magento extends Functionality {
 
     public function runNewArrivals($type, $config) {
         // code to get all new arrival items from last 30 days for 60 total days
-        $startDate = date('Y-m-d', strtotime('-59 Days'));        
+        $startDate = date('Y-m-d', strtotime('-59 Days'));
         $mysql = new Mysql();
         $newArrivalProducts = $mysql->selectNewArrivalProducts($startDate);
-        var_dump($newArrivalProducts);
-        //$this->setNewArrivalCat($type, $nap, $config);
+
+        foreach ($newArrivalProducts as $nap) {
+            $this->setNewArrivalCat($type, $nap, $config);
+        }
     }
 
     public function setClearanceCat($type, $cp, $config) {
@@ -79,7 +83,6 @@ class Magento extends Functionality {
     }
 
     public function setSaleCat($type, $sp, $config) {
-        // TODO: This needs to be done via configuration setting
         $categoryId = $config->getSaleBaseCat();
         $position = 1;
         $product = $sp['entity_id'];
@@ -111,9 +114,15 @@ class Magento extends Functionality {
         // inserts it into base category 215
         $type->insertCat($categoryId, $product, $position, $sku);
     }
-    
-    public function setNewArrivalCat($type, $product, $config){
-        // code here to insert it in
+
+    public function setNewArrivalCat($type, $product, $config) {
+        $categoryId = $config->getNewArrivalsCat();
+        $position = 1;
+        $entityId = $product['entity_id'];
+        $sku = $product['sku'];
+        
+        $type->insertCat($categoryId, $product, $position, $sku);
+        
     }
 
     public function removeDailyDealItems($products, $dailyDealItems) {

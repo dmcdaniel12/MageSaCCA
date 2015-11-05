@@ -88,7 +88,7 @@ class Mysql extends Functionality{
     }
     
     public function selectNewArrivalProducts($startDate){
-        return $this->selectQuery("SELECT cpf1.sku, cpedt.value FROM catalog_product_flat_1 as cpf1 LEFT JOIN catalog_product_entity_datetime as cpedt ON cpf1.entity_id = cpedt.entity_id WHERE cpedt.attribute_id = 84 AND cpedt.value > '$startDate'");
+        return $this->selectQuery("SELECT cpf1.entity_id,cpf1.sku, cpedt.value FROM catalog_product_flat_1 as cpf1 LEFT JOIN catalog_product_entity_datetime as cpedt ON cpf1.entity_id = cpedt.entity_id WHERE cpedt.attribute_id = 84 AND cpedt.value > '$startDate'");
     }
 
     public function selectQuery($query) {

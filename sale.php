@@ -17,7 +17,7 @@ include_once 'lib/Rapidflow.php';
 include_once 'lib/Csv.php';
 
 // TODO move this to config
-error_reporting(0);
+//error_reporting(0);
 set_time_limit(0);
 
 // TODO: setup csv file that it uses to go to 1 to 1 with
@@ -41,9 +41,9 @@ $newType = new $type();
 // TODO - Add in Magento code to do this via the API in small batch increments
 $magento = new Magento();
 // Need to make clearCategory also clear out New Arrivals
-//$magento->clearCategory($newType, $config);
+$magento->clearCategory($newType, $config);
 //$magento->runClearanceProductUpdates($newType, $config);
 //$magento->runSaleProductUpdates($newType, $config);
-$magento->runNewArrivals($newType, $config);
+//$magento->runNewArrivals($newType, $config);
 $magento->complete($newType);
 //$magento->reindex($config);
