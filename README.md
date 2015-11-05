@@ -46,6 +46,7 @@ Note: These are in no particular order. As I get them completed, I will strike t
 * ~~Config to turn off above bullet point~~
 * ~~Complete New Arrivals piece~~
 * ~~Create Auto Loader~~
+* Update README w/ a proper history
 
 ## Contributing
 
