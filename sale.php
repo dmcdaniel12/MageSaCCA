@@ -32,13 +32,15 @@ if ($config->getParseType() == 1) {
     $csv = new Csv();
     $parser = $csv->parseCsv($config->getCsvFileConversion());
     $config->setBaseCatToSalesCat($parser);
+    
+    $config->setSaleCats($csv->getSaleCategoriesFromCsv($config->getCsvFileConversion(), $config));
 }
 
 // InsertType 0 = SQL, 1 = CSV Export, 2 = Magento API
 $type = $config->getInsertType(0);
 $newType = new $type();
 
-// TODO - Add in Magento code to do this via the API in small batch increments
+//// TODO - Add in Magento code to do this via the API in small batch increments
 $magento = new Magento();
 // Need to make clearCategory also clear out New Arrivals
 $magento->clearCategory($newType, $config);
