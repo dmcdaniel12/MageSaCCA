@@ -125,7 +125,7 @@ class Magento extends Functionality {
         $sku = $prod['sku'];
         
         $categories = $type->selectQuery("SELECT category_id FROM catalog_category_product WHERE product_id = " . $product);
-        var_dump($categories);
+
         if ($config->getBaseCatToNewArrivalsCat()) {
             foreach ($categories as $cat) {
                 foreach ($config->getBaseCatToNewArrivalsCat() as $newArrivalsCat) {

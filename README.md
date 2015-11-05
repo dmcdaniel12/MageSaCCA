@@ -45,7 +45,7 @@ Note: These are in no particular order. As I get them completed, I will strike t
 * ~~Add in Daily Deal code for our own personal usage. We will be releasing this module to public soon.~~
 * ~~Config to turn off above bullet point~~
 * ~~Complete New Arrivals piece~~
-* Create Auto Loader
+* ~~Create Auto Loader~~
 
 ## Contributing
 
