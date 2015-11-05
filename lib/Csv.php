@@ -11,6 +11,24 @@ class Csv {
         return array_map('str_getcsv', file($file));
     }
     
+    public function parseSalesCatConvCsv($file){
+        $conversions = $this->parseCsv($file);
+        $baseCatConv = array();
+        foreach($conversions as $conv){
+            $baseCatConv[] = array($conv[0], $conv[1]);
+        }
+        return $baseCatConv;
+    }
+    
+    public function parseNewArrivalsCatConvCsv($file){
+        $conversions = $this->parseCsv($file);
+        $baseCatConv = array();
+        foreach($conversions as $conv){
+            $baseCatConv[] = array($conv[0] , $conv[2]);
+        }
+        return $baseCatConv;
+    }
+    
     public function getSaleCategoriesFromCsv($file, $config){
         $conversions = $this->parseCsv($file);
         $saleIds = array($config->getSaleBaseCat(), $config->getClearanceBaseCat());

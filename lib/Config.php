@@ -16,6 +16,7 @@ class Config {
     private $baseCategoryIds = array();
     private $saleCatId = array();
     private $baseCatToSalesCat;
+    private $baseCatToNewArrivalsCat;
     private $insertType = array("Mysql", "Rapidflow","Api"); 
     // 0 is array, 1 is csv
     private $parseType = 0;
@@ -126,5 +127,13 @@ class Config {
 
     public function setNewArrivalsCat($newArrivalsCat) {
         $this->newArrivalsCat = $newArrivalsCat;
+    }
+    
+    public function getBaseCatToNewArrivalsCat() {
+        return $this->baseCatToNewArrivalsCat;
+    }
+
+    public function setBaseCatToNewArrivalsCat($baseCatToNewArrivalsCat) {
+        $this->baseCatToNewArrivalsCat = $baseCatToNewArrivalsCat;
     }
 }

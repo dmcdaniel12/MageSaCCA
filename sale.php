@@ -30,9 +30,8 @@ $config->setExcludeSaleOfDayItems(true);
 
 if ($config->getParseType() == 1) {
     $csv = new Csv();
-    $parser = $csv->parseCsv($config->getCsvFileConversion());
-    $config->setBaseCatToSalesCat($parser);
-    
+    $config->setBaseCatToSalesCat($csv->parseSalesCatConvCsv($config->getCsvFileConversion()));
+    $config->setBaseCatToNewArrivalsCat($csv->parseNewArrivalsCatConvCsv($config->getCsvFileConversion()));
     $config->setSaleCats($csv->getSaleCategoriesFromCsv($config->getCsvFileConversion(), $config));
 }
 
@@ -42,10 +41,10 @@ $newType = new $type();
 
 //// TODO - Add in Magento code to do this via the API in small batch increments
 $magento = new Magento();
-// Need to make clearCategory also clear out New Arrivals
+//// Need to make clearCategory also clear out New Arrivals
 $magento->clearCategory($newType, $config);
-//$magento->runClearanceProductUpdates($newType, $config);
-//$magento->runSaleProductUpdates($newType, $config);
-//$magento->runNewArrivals($newType, $config);
+$magento->runClearanceProductUpdates($newType, $config);
+$magento->runSaleProductUpdates($newType, $config);
+$magento->runNewArrivals($newType, $config);
 $magento->complete($newType);
 //$magento->reindex($config);
