@@ -47,6 +47,7 @@ Note: These are in no particular order. As I get them completed, I will strike t
 * ~~Complete New Arrivals piece~~
 * ~~Create Auto Loader~~
 * Update README w/ a proper history
+* Pull items from Magento via proper channels w/ Mage
 
 ## Contributing
 
