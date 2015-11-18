@@ -21,7 +21,6 @@ class Magento extends Functionality {
         }
     }
 
-    //@TODO add in reindex method here - Needs to have API code in order to work properly
     public function reindex($config) {
         require_once $config->getMagentoAppLocation();
         umask(0);
