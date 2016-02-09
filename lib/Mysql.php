@@ -1,15 +1,15 @@
 <?php
+
 /**
  * @category MageSaCCA
  * @package MageSaCCA_Sale
  * @author Derek McDaniel dmcdaniel12@gmail.com
  * @license http://opensource.org/licenses/GPL-2.0 GPL-2.0 Public License
  */
-
 include_once 'Functionality.php';
 
 // TODO add in code to no longer limit by in stock
-class Mysql extends Functionality{
+class Mysql extends Functionality {
 
     private $server = '';
     private $username = '';
@@ -56,11 +56,11 @@ class Mysql extends Functionality{
     function setConn($conn) {
         $this->conn = $conn;
     }
-    
-    public function __construct(){
+
+    public function __construct() {
         $this->connect();
     }
-    
+
     public function connect() {
         $conn = new mysqli($this->getServer(), $this->getUsername(), $this->getPassword(), $this->getDatabase());
 
@@ -74,27 +74,27 @@ class Mysql extends Functionality{
     public function close($conn) {
         $this->getConn()->close();
     }
-    
-    public function selectClearanceQuery($clearanceAmount){
+
+    public function selectClearanceQuery($clearanceAmount) {
         return $this->selectQuery("SELECT * FROM catalog_product_flat_1 WHERE special_price < (price * $clearanceAmount)");
     }
-    
-    public function selectSalesQuery(){
+
+    public function selectSalesQuery() {
         return $this->selectQuery("SELECT * FROM catalog_product_flat_1 WHERE special_price < price");
     }
-    
-    public function selectDailyDeal($startDate, $endDate){
+
+    public function selectDailyDeal($startDate, $endDate) {
         return $this->selectQuery("SELECT sku FROM rods_dailydeal WHERE startDate = '$startDate' AND endDate = '$endDate'");
     }
-    
-    public function selectNewArrivalProducts($startDate){
+
+    public function selectNewArrivalProducts($startDate) {
         return $this->selectQuery("SELECT cpf1.entity_id,cpf1.sku, cpedt.value FROM catalog_product_flat_1 as cpf1 LEFT JOIN catalog_product_entity_datetime as cpedt ON cpf1.entity_id = cpedt.entity_id WHERE cpedt.attribute_id = 84 AND cpedt.value > '$startDate'");
     }
 
     public function selectQuery($query) {
         $result = $this->getConn()->query($query);
         while ($row = $result->fetch_object()) {
-            $results[] = json_decode(json_encode($row),true);
+            $results[] = json_decode(json_encode($row), true);
         }
 
         return $results;
@@ -118,11 +118,15 @@ class Mysql extends Functionality{
         return false;
     }
 
+    public function setSortType($category) {
+        $this->getConn()->query("INSERT INTO merchandiser_category_values VALUES ('$category', '', '', '', 0 ,'move_bestsellers_top')");
+    }
+
     public function deleteQuery($whereData) {
         $this->getConn()->query("DELETE FROM catalog_category_product WHERE category_id = $whereData");
     }
-        
-    public function complete(){
+
+    public function complete() {
         $this->getConn()->close();
     }
 

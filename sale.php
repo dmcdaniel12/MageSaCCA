@@ -48,6 +48,11 @@ $magento->clearCategory($newType, $config);
 $magento->runClearanceProductUpdates($newType, $config);
 $magento->runSaleProductUpdates($newType, $config);
 $magento->runNewArrivals($newType, $config);
+
+foreach($config->getSaleCats() as $category){
+    $magento->setSortType($newType, $category);
+}
+
 $magento->complete($newType);
 //$magento->reindex($config);
 
@@ -55,4 +60,4 @@ $finish = microtime(TRUE);
 
 $totaltime = $finish - $start;  
   
-echo "This script took ".$totaltime." seconds to run";  
+echo "This script took " . $totaltime . " seconds to run";  

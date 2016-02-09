@@ -9,6 +9,8 @@
 include_once 'Functionality.php';
 
 class Magento extends Functionality {
+    
+    private $sortType;
 
     public function clearCategory($type, $config) {
         // This will get the New Arrivals Category and delete it
@@ -150,6 +152,11 @@ class Magento extends Functionality {
         }
         return $products;
     }
+    
+    public function setSortType($type, $category){
+        $type->setSortType($category);
+    }
+    
 
     public function complete($type) {
         $type->complete();
