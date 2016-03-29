@@ -24,7 +24,9 @@ set_time_limit(0);
 // TODO: setup csv file that it uses to go to 1 to 1 with
 // Can add any number of configuration params here to change the default configuration
 $config = new Config();
-$config->setMagentoAppLocation(ROOT . DS . 'rods' . DS . 'app' . DS . 'Mage.php');
+//$config->setMagentoAppLocation(ROOT . DS . 'app' . DS . 'Mage.php');
+$config->setMagentoAppLocation(ROOT . DS . "rods" . DS . 'app' . DS . 'Mage.php');
+
 // This sets the parse type to CSV instead of from a category config section
 $config->setParseType(1);
 $config->setExcludeSaleOfDayItems(true);
@@ -45,16 +47,18 @@ $newType = new $type();
 $magento = new Magento();
 //// Need to make clearCategory also clear out New Arrivals
 $magento->clearCategory($newType, $config);
-$magento->runClearanceProductUpdates($newType, $config);
+//$magento->runClearanceProductUpdates($newType, $config);
 $magento->runSaleProductUpdates($newType, $config);
-$magento->runNewArrivals($newType, $config);
+//$magento->runNewArrivals($newType, $config);
 
 foreach($config->getSaleCats() as $category){
-    $magento->setSortType($newType, $category);
+  //  $magento->setSortType($newType, $category);
 }
 
 $magento->complete($newType);
 //$magento->reindex($config);
+
+//$magento->saveCategory($config);
 
 $finish = microtime(TRUE);
 

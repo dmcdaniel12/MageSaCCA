@@ -9,12 +9,12 @@
 include_once 'Functionality.php';
 
 class Magento extends Functionality {
-    
+
     private $sortType;
 
     public function clearCategory($type, $config) {
         // This will get the New Arrivals Category and delete it
-        foreach($config->getNewArrivalCats() as $cat){
+        foreach ($config->getNewArrivalCats() as $cat) {
             $type->deleteQuery($cat);
         }
 
@@ -52,13 +52,6 @@ class Magento extends Functionality {
         $mysql = new Mysql();
         $saleProducts = $mysql->selectSalesQuery();
 
-        if ($config->getExcludeSaleOfDayItems()) {
-            $startDate = date('Y-m-d') . " 00:00:00";
-            $endDate = date('Y-m-d', strtotime(' +1 day')) . " 00:00:00";
-            $dailyDealItems = $mysql->selectDailyDeal($startDate, $endDate);
-            $saleProducts = $this->removeDailyDealItems($saleProducts, $dailyDealItems);
-        }
-
         foreach ($saleProducts as $sp) {
             if (isset($sp)) {
                 $this->setSaleCat($type, $sp, $config);
@@ -91,6 +84,10 @@ class Magento extends Functionality {
         $position = 1;
         $product = $sp['entity_id'];
         $sku = $sp['sku'];
+        
+        if($sku == 'BRL355-7-1'){
+            echo "BRL355-7-1";
+        }
 
         $categories = $type->selectQuery("SELECT category_id FROM catalog_category_product WHERE product_id = " . $product);
 
@@ -125,7 +122,7 @@ class Magento extends Functionality {
         $position = 1;
         $product = $prod['entity_id'];
         $sku = $prod['sku'];
-        
+
         $categories = $type->selectQuery("SELECT category_id FROM catalog_category_product WHERE product_id = " . $product);
 
         if ($config->getBaseCatToNewArrivalsCat()) {
@@ -137,9 +134,8 @@ class Magento extends Functionality {
                 }
             }
         }
-        
+
         $type->insertCat($categoryId, $product, $position, $sku);
-        
     }
 
     public function removeDailyDealItems($products, $dailyDealItems) {
@@ -152,14 +148,26 @@ class Magento extends Functionality {
         }
         return $products;
     }
-    
-    public function setSortType($type, $category){
+
+    public function setSortType($type, $category) {
         $type->setSortType($category);
     }
-    
 
     public function complete($type) {
         $type->complete();
+    }
+
+    public function saveCategory($config) {
+
+        require_once($config->getMagentoAppLocation());
+
+        umask(0);
+        Mage::app();
+
+        $category = Mage::getModel('catalog/category')->load(215);
+        $category->setStoreId(0);
+        $category->save();
+        echo "Succeeded <br /> ";
     }
 
 }
